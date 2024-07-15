@@ -1,3 +1,4 @@
+const Tour = require("../models/tourModel");
 exports.getAllTours = async (req, res) => {
   try {
     res.status(200).json({ message: "all tours here" });
