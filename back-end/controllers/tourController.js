@@ -51,7 +51,6 @@ exports.getTour = async (req, res) => {
   }
 };
 exports.updateTour = async (req, res) => {
-  // !! new:true it returns new updated document is returned
   try {
     const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
