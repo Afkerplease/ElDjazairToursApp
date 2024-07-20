@@ -1,0 +1,40 @@
+.reviews-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.review {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review-name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.review-rating {
+  margin: 0.5rem 0;
+
+  .star {
+    font-size: 1.2rem;
+    color: #ddd;
+
+    &.filled {
+      color: #f5a623;
+    }
+  }
+}
+
+.review-comment {
+  font-size: 1rem;
+  color: #555;
+}
