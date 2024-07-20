@@ -14,22 +14,22 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__logo">Logo</div>
       <div className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
-        <a href="#home" className="navbar__link">
+        <a href="/" className="navbar__link">
           Home
         </a>
-        <a href="#about" className="navbar__link">
+        <a href="/tours" className="navbar__link">
           Tours
         </a>
-        <a href="#services" className="navbar__link">
+        <a href="/help" className="navbar__link">
           Help
         </a>
-        <a href="#portfolio" className="navbar__link">
+        <a href="/contact" className="navbar__link">
           Contact
         </a>
-        <a href="#contact" className="navbar__link">
+        <a href="/sign-up" className="navbar__link">
           Sign up
         </a>
-        <a href="#blog" className="navbar__link">
+        <a href="/log-in" className="navbar__link">
           Log in
         </a>
       </div>
