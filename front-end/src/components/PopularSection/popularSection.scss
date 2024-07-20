@@ -1,0 +1,31 @@
+.popular__section {
+  width: 100%;
+  overflow: hidden;
+
+  .popular__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
+.popular__images {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+.popular__image {
+  width: 50%;
+  height: auto;
+  display: block;
+}
+.popular__image__container {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}
