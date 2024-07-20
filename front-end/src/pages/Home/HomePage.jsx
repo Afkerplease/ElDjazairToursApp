@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./homepage.scss";
 import React, { useState, useEffect } from "react";
 
 function HomePage() {
@@ -15,7 +16,6 @@ function HomePage() {
 
   return (
     <div>
-      <h1>hello</h1>
       {data.map((tour) => {
         return (
           <div key={tour.id}>

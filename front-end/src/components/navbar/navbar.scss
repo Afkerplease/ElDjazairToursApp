@@ -1,5 +1,69 @@
 .navbar {
-  width: 100%;
-  height: 80px;
-  background-color: gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333;
+  color: #fff;
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+
+    &--open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 59px;
+      right: 0;
+      background-color: #444;
+      width: 100%;
+      padding: 1rem 0;
+      z-index: 10;
+    }
+  }
+
+  &__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+
+    &-line {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 3px 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar__links.navbar__links--open {
+    display: flex;
+    align-items: center;
+  }
 }

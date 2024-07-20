@@ -1,0 +1,19 @@
+@import "../../Variables/Variables.scss";
+.mainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-family: mon;
+  h1 {
+    color: red;
+    font-family: $titleFont;
+  }
+  button {
+    @include buttonStyle();
+  }
+}
+body {
+  padding: 0;
+  margin: 0;
+}
