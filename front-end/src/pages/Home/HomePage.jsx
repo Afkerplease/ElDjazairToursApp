@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import PopularSection from "../../components/PopularSection/PopularSection";
 import ChooseSection from "../../components/ChooseSection/ChooseSection";
+import TrendingDistinationsSection from "../../components/TrendingDistinations/TrendingDestinations";
 
 function HomePage() {
   return (
@@ -11,7 +12,7 @@ function HomePage() {
       <HeroSection />
       <PopularSection />
       <ChooseSection />
-      {/* <TrendingDistinationsSection /> */}
+      <TrendingDistinationsSection />
       {/* <CustomerSection /> */}
     </>
   );

@@ -1,13 +1,13 @@
 .choose__section {
   padding-bottom: 2rem;
   margin: 5rem auto;
-  width: 1320px;
+  max-width: 1320px;
 }
 .cards__container {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start;
 
   .card {
     display: flex;
