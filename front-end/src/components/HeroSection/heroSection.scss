@@ -1,0 +1,39 @@
+@import "../../Variables/Variables.scss";
+.hero {
+  position: relative;
+  background-image: url("/public/herro.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &__content {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  &__title {
+    @include gradient(to right, $list1);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-family: $titleFont;
+    font-weight: 700;
+  }
+  &__title {
+    font-size: 3rem;
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+      .hero {
+        height: 50%;
+        width: 50%;
+      }
+    }
+  }
+}

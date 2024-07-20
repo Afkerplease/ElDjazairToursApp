@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./navbar.scss";
 import { MdClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import logo from "../../images/logo3.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +14,12 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar__logo">Logo</div>
+      <div className="navbar__logo">
+        <Link to={"/"}>
+          <img className="navbar__logo" src={logo} />
+        </Link>
+      </div>
+
       <div className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
         <a href="/" className="navbar__link">
           Home

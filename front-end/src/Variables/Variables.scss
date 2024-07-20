@@ -2,13 +2,15 @@
 
 // !! COLORS
 $blueColor: #05073c;
+$gradientColor1: #ee8c61;
+$gradientColor2: #4c43c4;
 $orange: #eb662b;
 $whiteColor: #fff;
 $redColor: rgb(216, 142, 142);
 // !! FONTS
 $titleFont: "Montserrat", sans-serif;
 $bodyFont: "Poppins", sans-serif;
-
+$list1: $gradientColor1 27%, $gradientColor2 87%;
 @mixin buttonStyle {
   width: 200px;
   height: 40px;
@@ -17,4 +19,7 @@ $bodyFont: "Poppins", sans-serif;
   border-radius: 8px;
   color: $whiteColor;
   font-size: 25px;
+}
+@mixin gradient($direction, $list1) {
+  background: linear-gradient($direction, $list1);
 }
