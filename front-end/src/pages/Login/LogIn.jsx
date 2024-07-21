@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./login.scss";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,10 +17,22 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Form submitted:", formData);
+    try {
+      const res = await fetch("/api/v1/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -31,7 +45,6 @@ const Login = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -42,7 +55,6 @@ const Login = () => {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
             onChange={handleChange}
             required
           />

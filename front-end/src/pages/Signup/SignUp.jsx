@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./signup.scss";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 
   const preferencesOptions = [
@@ -55,6 +57,7 @@ const SignUp = () => {
       });
       const data = await res.json();
       console.log(data);
+      navigate("/log-in");
     } catch (error) {
       console.log(error);
     }
