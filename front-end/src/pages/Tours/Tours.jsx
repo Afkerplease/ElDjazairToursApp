@@ -15,9 +15,11 @@ function Tours() {
     <div>
       {data.map((tour) => {
         return (
-          <div key={tour.id}>
+          <div key={tour._id}>
             {" "}
-            <h3> {tour.name}</h3>{" "}
+            <h3> {tour.name}</h3>
+            <img src={tour.images} />
+            <h1> {tour.price} </h1>
           </div>
         );
       })}

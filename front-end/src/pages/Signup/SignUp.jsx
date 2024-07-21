@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import "./signup.scss";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    preferences: [],
-  });
+  const [formData, setFormData] = useState({});
 
   const preferencesOptions = [
     "Travel",
@@ -17,36 +12,52 @@ const SignUp = () => {
     "Music",
   ];
 
+  // const handleChange = (e) => {
+  //   console.log(e.target.value);
+  //   const { name, value, type, checked } = e.target;
+  //   if (type === "checkbox") {
+  //     setFormData((prevData) => {
+  //       if (checked) {
+  //         return {
+  //           ...prevData,
+  //           preferences: [...prevData.preferences, value],
+  //         };
+  //       } else {
+  //         return {
+  //           ...prevData,
+  //           preferences: prevData.preferences.filter(
+  //             (preference) => preference !== value
+  //           ),
+  //         };
+  //       }
+  //     });
+  //   } else {
+  //     setFormData({
+  //       ...formData,
+  //       [name]: value,
+  //     });
+  //   }
+  // };
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      setFormData((prevData) => {
-        if (checked) {
-          return {
-            ...prevData,
-            preferences: [...prevData.preferences, value],
-          };
-        } else {
-          return {
-            ...prevData,
-            preferences: prevData.preferences.filter(
-              (preference) => preference !== value
-            ),
-          };
-        }
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  console.log(formData);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Form submitted:", formData);
+    try {
+      const res = await fetch("/api/v1/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -59,7 +70,6 @@ const SignUp = () => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
             onChange={handleChange}
             required
           />
@@ -70,7 +80,6 @@ const SignUp = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -81,12 +90,11 @@ const SignUp = () => {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Preferences</label>
           <div className="preferences-options">
             {preferencesOptions.map((option) => (
@@ -102,11 +110,10 @@ const SignUp = () => {
               </label>
             ))}
           </div>
-        </div>
+        </div> */}
         <button type="submit">Sign Up</button>
       </form>
     </div>
   );
 };
-
 export default SignUp;

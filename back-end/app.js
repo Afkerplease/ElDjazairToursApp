@@ -1,8 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/UserRoutes");
+const authRouter = require("./routes/authRoute");
+const cors = require("cors");
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/auth", authRouter);
 module.exports = app;
