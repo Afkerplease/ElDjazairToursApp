@@ -11,4 +11,14 @@ app.use(cors());
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
+//  error handler when using next()
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "internal Server error";
+  return res.status(statusCode).json({
+    success: false,
+    error: message,
+    statusCode,
+  });
+});
 module.exports = app;
