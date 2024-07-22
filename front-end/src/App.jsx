@@ -16,13 +16,11 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/log-in" element={<LogIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/tours" element={<Tours />}>
-          <Route path="/tours/tour/:id" element={<Tour />} />
-        </Route>
+        <Route path="/tours" element={<Tours />} />
+        <Route path="/tours/tour/:id" element={<Tour />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<ContactUs />} />
       </Route>
-      {/* <Route path="tours" element={<Tours />}></Route> */}
     </Routes>
   );
 }
