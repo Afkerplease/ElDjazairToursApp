@@ -33,10 +33,11 @@ const Navbar = () => {
         <a href="/contact" className="navbar__link">
           Contact
         </a>
+        <div className="gap"></div>
         <a href="/sign-up" className="navbar__link">
           Sign up
         </a>
-        <a href="/log-in" className="navbar__link">
+        <a href="/log-in" className="navbar__link login">
           Log in
         </a>
       </div>

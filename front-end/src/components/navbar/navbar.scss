@@ -1,16 +1,32 @@
 .navbar {
+  font-family: Inter, sans-serif !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: gray;
+  background-color: #fef8f5;
   color: black;
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: 60%;
+    .gap {
+      flex-grow: 1;
+    }
+  }
 
   &__logo {
     width: 10rem;
     cursor: pointer;
   }
 
+  .login {
+    padding: 12px 21px;
+    border: 1px solid #05073c;
+    border-radius: 200px;
+  }
   &__links {
     display: flex;
     gap: 1.5rem;
@@ -22,7 +38,7 @@
       position: absolute;
       top: 59px;
       right: 0;
-      background-color: #444;
+      background-color: #fef8f5;
       width: 100%;
       padding: 1rem 0;
       z-index: 10;
@@ -55,7 +71,7 @@
 
 @media (max-width: 768px) {
   .navbar__links {
-    display: none;
+    display: none !important;
   }
 
   .navbar__hamburger {
@@ -63,7 +79,7 @@
   }
 
   .navbar__links.navbar__links--open {
-    display: flex;
+    display: flex !important;
     align-items: center;
   }
 }

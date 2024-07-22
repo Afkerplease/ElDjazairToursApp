@@ -1,0 +1,49 @@
+.tours {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  padding: 2rem;
+
+  // card div
+  & > div {
+    height: 400px;
+    width: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+    // card text
+    div {
+      flex-direction: column;
+      box-sizing: border-box;
+      height: 100%;
+      display: flex;
+      padding: 30px;
+      align-items: flex-start;
+      justify-content: flex-end;
+      color: #fff;
+      font-weight: 500;
+      font-size: 20px;
+      background: linear-gradient(180deg, rgba(5, 7, 60, 0) 0%, #05073c 100%);
+      h2 {
+        font-size: 25px;
+        margin: 0;
+      }
+      h3 {
+        font-size: 25px;
+        margin: 1rem 0;
+      }
+      p {
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+  }
+}

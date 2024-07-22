@@ -10,26 +10,54 @@ function PopularSection() {
         <h2>Popular things to do</h2>
         <span>See all</span>
       </div>
-      <div className="popular__images">
-        {/* image */}
-        <div className=" popular__image__container">
-          <img className="popular__image" src={image1} alt="" />
-          <p>dummy data</p>
+      <div className="parent">
+        <div
+          className="div1 image-container"
+          style={{ backgroundImage: `url(${image1})` }}
+        >
+          <div>
+            <p>Cruises</p>
+          </div>
         </div>
-        {/* image */}
-        <div className=" popular__image__container">
-          <img className="popular__image" src={image2} alt="" />
-          <p>dummy data</p>
+        <div
+          className="div2 image-container"
+          style={{ backgroundImage: `url(${image2})` }}
+        >
+          <div>
+            <p>Beach Tours</p>
+          </div>
         </div>
-        {/* image */}
-        <div className=" popular__image__container">
-          <img className="popular__image" src={image3} alt="" />
-          <p>dummy data</p>
+        <div
+          className="div3 image-container"
+          style={{ backgroundImage: `url(${image3})` }}
+        >
+          <div>
+            <p>City Tours</p>
+          </div>
         </div>
-        {/* image */}
-        <div className=" popular__image__container">
-          <img className="popular__image" src={image3} alt="" />
-          <p>dummy data</p>
+        <div
+          className="div4 image-container"
+          style={{ backgroundImage: `url(${image1})` }}
+        >
+          <div>
+            <p>Museum Tour</p>
+          </div>
+        </div>
+        <div
+          className="div5 image-container"
+          style={{ backgroundImage: `url(${image2})` }}
+        >
+          <div>
+            <p>Food</p>
+          </div>
+        </div>
+        <div
+          className="div6 image-container"
+          style={{ backgroundImage: `url(${image3})` }}
+        >
+          <div>
+            <p>Hiking</p>
+          </div>
         </div>
       </div>
     </section>

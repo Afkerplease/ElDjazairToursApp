@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "./tours.scss";
+import { Link } from "react-router-dom";
 
 function Tours() {
   const [data, setData] = useState([]);
@@ -12,14 +14,18 @@ function Tours() {
     getTours();
   }, []);
   return (
-    <div>
+    <div className="tours">
       {data.map((tour) => {
         return (
-          <div key={tour._id}>
-            {" "}
-            <h3> {tour.name}</h3>
-            <img src={tour.images} />
-            <h1> {tour.price} </h1>
+          <div
+            key={tour._id}
+            style={{ backgroundImage: `url( " ${tour.images} " ) ` }}
+          >
+            <div>
+              <h2>{tour.destination}</h2>
+              <p> {tour.name} </p>
+              <h3> {tour.price}£ </h3>
+            </div>
           </div>
         );
       })}

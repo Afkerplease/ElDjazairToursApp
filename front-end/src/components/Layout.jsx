@@ -5,10 +5,11 @@ import Footer from "./footer/Footer";
 
 function Layout() {
   return (
-    <div className="">
+    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <NavBar />
-
-      <Outlet />
+      <main style={{ flexGrow: 1 }}>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

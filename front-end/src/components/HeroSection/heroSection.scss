@@ -2,26 +2,28 @@
 .hero {
   position: relative;
   background-image: url("/herro.png");
+  background-color: #fef8f5;
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 80vh;
 
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
 
   &__content {
     color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    // text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
   &__title {
-    @include gradient(to right, $list1);
+    // margin-top: 15vh;
+    background: linear-gradient(90.84deg, #ee8c61 27.01%, #4c43c4 87.3%);
+    -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-
     font-family: $titleFont;
-    font-weight: 700;
+    // font-weight: 700;
+    font-size: 60px;
   }
   &__title {
     font-size: 3rem;
