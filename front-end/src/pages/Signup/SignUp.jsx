@@ -62,7 +62,6 @@ const SignUp = () => {
       console.log(error);
     }
     setFormData({});
-    alert("account created");
   };
 
   return (

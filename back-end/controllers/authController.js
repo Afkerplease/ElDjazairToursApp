@@ -32,6 +32,6 @@ exports.signin = async (req, res, next) => {
     //  rest here is the the rest of the document without the password
     res.cookie("token", token, { httpOnly: true }).status(200).json(rest);
   } catch (error) {
-    res.status(400).json({ message: error });
+    next(error);
   }
 };
