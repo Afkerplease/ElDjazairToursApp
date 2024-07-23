@@ -1,6 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./user/userSlice";
-import { persistReducer } from "redux-persist";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import { combineReducers } from "@reduxjs/toolkit";
@@ -17,7 +25,9 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       // prevent some error while using redux
-      serialzibbleCheck: false,
+      serialzibbleCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PERSIST, PAUSE, PURGE, REGISTER],
+      },
     }),
 });
 

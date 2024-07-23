@@ -4,8 +4,11 @@ import { MdClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../../images/logo3.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RxAvatar } from "react-icons/rx";
 
 const Navbar = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -37,14 +40,11 @@ const Navbar = () => {
         <a href="/sign-up" className="navbar__link">
           Sign up
         </a>
-        <a href="/log-in" className="navbar__link login">
-          Log in
+        <a href="/profile" className="navbar__link login">
+          {currentUser ? <RxAvatar /> : "Log in "}
         </a>
       </div>
       <div className="navbar__hamburger" onClick={toggleMenu}>
-        {/* <span className="navbar__hamburger-line"></span>
-        <span className="navbar__hamburger-line"></span>
-        <span className="navbar__hamburger-line"></span> */}
         {isOpen ? <MdClose /> : <GiHamburgerMenu />}
       </div>
     </nav>

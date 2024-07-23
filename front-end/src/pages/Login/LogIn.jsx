@@ -34,7 +34,7 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
+      console.log(data.error);
       if (data.success === false) {
         console.log(data.error);
         dispatch(signInFailure(data.error));

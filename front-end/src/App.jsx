@@ -8,6 +8,8 @@ import Help from "./pages/Help/Help";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import SignUp from "./pages/Signup/SignUp";
 import Tour from "./pages/Tour/Tour";
+import PrivateRoute from "./components/PrivateRoute";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
         <Route path="/tours/tour/:id" element={<Tour />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Route>
     </Routes>
   );

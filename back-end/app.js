@@ -4,10 +4,13 @@ const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/UserRoutes");
 const authRouter = require("./routes/authRoute");
 const reviewsRouter = require("./routes/reviewsRoutes");
+
 const cors = require("cors");
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(cors());
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
