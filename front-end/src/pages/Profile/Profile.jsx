@@ -5,6 +5,9 @@ import {
   updateUserStart,
   updateUserSuccess,
   updateUserFailure,
+  deleteUserFailure,
+  deleteUserSuccess,
+  deleteUserStart,
 } from "../../redux/user/userSlice.js";
 function Profile() {
   const dispatch = useDispatch();
@@ -45,9 +48,19 @@ function Profile() {
     alert("Profile updated!");
   };
 
-  const handleDelete = () => {
-    // Add delete logic here
-    alert("Profile deleted!");
+  const handleDelete = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/v1/users/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = res.json();
+      if ((data.success = false)) {
+        dispatch(deleteUserFailure(data));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {}
   };
 
   return (
@@ -81,6 +94,7 @@ function Profile() {
             id="password"
             name="password"
             onChange={handleChange}
+            required={true}
           />
           <button type="submit" className="update-btn">
             {loading ? "Loading..." : "Update"}

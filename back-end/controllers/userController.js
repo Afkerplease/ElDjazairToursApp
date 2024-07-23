@@ -40,7 +40,7 @@ exports.updateUser = async (req, res) => {
     if (user) {
       user.name = name || user.name;
       user.email = email || user.email;
-      user.password = bcryptjs.hashSync(req.body.password, 10) || user.password;
+      user.password = bcryptjs.hashSync(password, 10) || user.password;
 
       const updatedUser = await user.save();
       res.json(updatedUser);
