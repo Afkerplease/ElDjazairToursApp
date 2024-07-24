@@ -19,6 +19,7 @@ const Tour = () => {
 
     setTourData(data.data.tour);
   }
+  //  !! function to get the tour comments
   async function getTourComment() {
     const res = await fetch(`/api/v1/reviews/${tourid.id}`);
     const data = await res.json();
@@ -26,19 +27,33 @@ const Tour = () => {
 
     setComments(data.data);
   }
-  console.log(comments);
-
+  async function addComment() {
+    const res = await fetch(`/api/v1/reviews/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tour_id: tourid.id,
+        user_id: currentUser._id,
+        rating: 4,
+        comment: newComment,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  }
   useEffect(() => {
     getTourData();
     getTourComment();
   }, []);
 
-  const addComment = () => {
-    if (newComment.trim()) {
-      setComments([...comments, newComment]);
-      setNewComment("");
-    }
-  };
+  // const addComment = () => {
+  //   if (newComment.trim()) {
+  //     setComments([...comments, newComment]);
+  //     setNewComment("");
+  //   }
+  // };
 
   const deleteComment = (index) => {
     const updatedComments = comments.filter((_, i) => i !== index);
