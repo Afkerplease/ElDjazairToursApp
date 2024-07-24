@@ -27,7 +27,8 @@ const Tour = () => {
 
     setComments(data.data);
   }
-  async function addComment() {
+  //  !! function to add a comment
+  async function addComments() {
     const res = await fetch(`/api/v1/reviews/add`, {
       method: "POST",
       headers: {
@@ -40,6 +41,7 @@ const Tour = () => {
         comment: newComment,
       }),
     });
+
     const data = await res.json();
     console.log(data);
   }
@@ -47,17 +49,21 @@ const Tour = () => {
     getTourData();
     getTourComment();
   }, []);
-
-  // const addComment = () => {
-  //   if (newComment.trim()) {
-  //     setComments([...comments, newComment]);
-  //     setNewComment("");
-  //   }
-  // };
-
-  const deleteComment = (index) => {
-    const updatedComments = comments.filter((_, i) => i !== index);
-    setComments(updatedComments);
+  // !! function to delete a comment
+  const deleteComment = async (id) => {
+    try {
+      const res = await fetch(`/api/v1/reviews/${id}`, {
+        method: "DELETE",
+      });
+      const data = res.json();
+      if ((data.success = false)) {
+        // dispatch(deleteUserFailure(data));
+        return;
+      }
+      // dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -78,14 +84,14 @@ const Tour = () => {
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Add a comment"
           />
-          <button onClick={addComment}>Add Comment</button>
+          <button onClick={addComments}>Add Comment</button>
         </div>
         <ul className="comments-list">
           {/* <li className="comment">{comments[0].comment}</li> */}
           {comments.map((comment, index) => (
-            <li key={index} className="comment">
+            <li key={comment._id} className="comment">
               {comment.comment}
-              <button onClick={() => deleteComment(index)}>Delete</button>
+              <button onClick={() => deleteComment(comment._id)}>Delete</button>
             </li>
           ))}
         </ul>
