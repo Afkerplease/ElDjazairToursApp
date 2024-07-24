@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Tour.scss";
+import { useParams } from "react-router-dom";
 
 const Tour = () => {
-  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [comments, setComments] = useState([]);
+  const [tourData, setTourData] = useState([]);
+
+  const tourid = useParams();
+  console.log(tourid.id);
+
+  async function getTourData() {
+    const res = await fetch(`/api/v1/tours/${tourid.id}`);
+    const data = await res.json();
+    console.log(data);
+
+    setTourData(data.data.tour);
+  }
+  console.log(tourData);
+  useEffect(() => {
+    getTourData();
+  }, []);
 
   const addComment = () => {
     if (newComment.trim()) {
@@ -20,13 +37,10 @@ const Tour = () => {
   return (
     <div className="tour-page">
       <div className="tour-details">
-        <img src="path_to_your_image.jpg" alt="Tour" className="tour-image" />
-        <h1 className="tour-title">Amazing Tour</h1>
-        <p className="tour-description">
-          Explore the wonders of the world with our amazing tour. From scenic
-          landscapes to cultural landmarks, this tour has it all.
-        </p>
-        <p className="tour-price">$999.99</p>
+        <img src={tourData.images} alt="Tour" className="tour-image" />
+        <h1 className="tour-title"> {tourData.name} </h1>
+        <p className="tour-description">{tourData.description}</p>
+        <p className="tour-price"> {tourData.price} € </p>
         <button className="book-button">Book Now</button>
       </div>
       <div className="comments-section">

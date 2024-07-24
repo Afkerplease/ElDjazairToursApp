@@ -37,9 +37,11 @@ const Navbar = () => {
           Contact
         </a>
         <div className="gap"></div>
-        <a href="/sign-up" className="navbar__link">
-          Sign up
-        </a>
+        {!currentUser && (
+          <a href="/sign-up" className="navbar__link">
+            Sign up
+          </a>
+        )}
         <a href="/profile" className="navbar__link login">
           {currentUser ? <RxAvatar /> : "Log in "}
         </a>
