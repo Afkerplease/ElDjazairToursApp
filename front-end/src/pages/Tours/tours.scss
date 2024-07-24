@@ -1,3 +1,4 @@
+@import "../../Variables/Variables.scss";
 .tours {
   display: flex;
   flex-wrap: wrap;
@@ -7,6 +8,7 @@
 
   // card div
   & > div {
+    cursor: pointer;
     height: 400px;
     width: 300px;
     background-position: center;
@@ -34,6 +36,7 @@
       background: linear-gradient(180deg, rgba(5, 7, 60, 0) 0%, #05073c 100%);
       h2 {
         font-size: 25px;
+        color: $orange;
         margin: 0;
       }
       h3 {

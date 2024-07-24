@@ -8,8 +8,10 @@ function Tours() {
     const res = await fetch("/api/v1/tours");
     const data = await res.json();
     console.log(data.data.tours);
+
     setData(data.data.tours);
   }
+  console.log(data);
   useEffect(() => {
     getTours();
   }, []);
@@ -21,11 +23,16 @@ function Tours() {
             key={tour._id}
             style={{ backgroundImage: `url( " ${tour.images} " ) ` }}
           >
-            <div>
-              <h2>{tour.destination}</h2>
-              <p> {tour.name} </p>
-              <h3> {tour.price}£ </h3>
-            </div>
+            <Link
+              to={`/tours/tour/${tour._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div>
+                <h2>{tour.destination}</h2>
+                <p> {tour.name} </p>
+                <h3> {tour.price} € </h3>
+              </div>
+            </Link>
           </div>
         );
       })}

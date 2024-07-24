@@ -35,3 +35,6 @@ exports.signin = async (req, res, next) => {
     next(error);
   }
 };
+exports.logout = async (req, res, next) => {
+  res.clearCookie("token").status(200).json("logout success");
+};

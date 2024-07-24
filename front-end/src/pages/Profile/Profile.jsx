@@ -8,6 +8,7 @@ import {
   deleteUserFailure,
   deleteUserSuccess,
   deleteUserStart,
+  signOut,
 } from "../../redux/user/userSlice.js";
 function Profile() {
   const dispatch = useDispatch();
@@ -43,10 +44,6 @@ function Profile() {
       //   console.log(error.message);
     }
   };
-  const handleUpdate = () => {
-    // Add update logic here
-    alert("Profile updated!");
-  };
 
   const handleDelete = async () => {
     try {
@@ -61,6 +58,14 @@ function Profile() {
       }
       dispatch(deleteUserSuccess(data));
     } catch (error) {}
+  };
+  const handleSignOut = async () => {
+    try {
+      await fetch("api/v1/auth/logout");
+      dispatch(signOut());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -103,6 +108,9 @@ function Profile() {
         <div className="form-actions">
           <button type="button" className="delete-btn" onClick={handleDelete}>
             Delete
+          </button>
+          <button type="button" className="delete-btn" onClick={handleSignOut}>
+            Signout
           </button>
         </div>
       </form>
