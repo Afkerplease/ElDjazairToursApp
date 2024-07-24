@@ -42,10 +42,7 @@ exports.addReview = async (req, res, next) => {
 
 exports.deleteReview = async (req, res, next) => {
   try {
-    const { tourId } = req.params;
-    const deletedReview = await Reviews.findOneAndDelete({
-      _id: tourId,
-    });
+    await Reviews.findByIdAndDelete(req.params.tourId);
     return res.status(200).json({
       status: "success",
     });

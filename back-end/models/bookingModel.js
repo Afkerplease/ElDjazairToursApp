@@ -5,20 +5,18 @@ const bookingSchema = new mongoose.Schema(
     user_id: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
-      required: false,
+      required: true,
     },
     tour_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Tour",
-      required: false,
-    },
-    bookingDate: {
-      type: Date,
       required: true,
     },
+    bookingDate: Date,
     status: {
       type: String,
       trim: true,
+      default: "pending",
       required: [true, "A tour must have a description"],
     },
   },

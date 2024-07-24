@@ -4,6 +4,7 @@ const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/UserRoutes");
 const authRouter = require("./routes/authRoute");
 const reviewsRouter = require("./routes/reviewsRoutes");
+const bookingRouter = require("./routes/bookingRoute");
 
 const cors = require("cors");
 
@@ -16,6 +17,7 @@ app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/reviews", reviewsRouter);
+app.use("/api/v1/booking", bookingRouter);
 //  error handler when using next()
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
