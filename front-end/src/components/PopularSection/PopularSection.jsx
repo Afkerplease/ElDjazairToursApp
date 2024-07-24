@@ -3,12 +3,18 @@ import "./popularSection.scss";
 import image1 from "../../images/place1.jpeg";
 import image2 from "../../images/place2.jpg";
 import image3 from "../../images/place3.jpg";
+import { Link } from "react-router-dom";
 function PopularSection() {
   return (
     <section className=" popular__section">
       <div className="popular__header">
         <h2>Popular things to do</h2>
-        <span>See all</span>
+        <span>
+          {" "}
+          <Link className="link" to={"/tours"}>
+            See all{" "}
+          </Link>{" "}
+        </span>
       </div>
       <div className="parent">
         <div

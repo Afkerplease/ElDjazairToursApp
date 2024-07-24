@@ -1,3 +1,4 @@
+@import "../../Variables/Variables.scss";
 .parent {
   display: grid;
   height: 50vh;
@@ -5,6 +6,10 @@
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+}
+h2 {
+  font-family: $titleFont;
+  color: $blueColor;
 }
 
 .image-container {
@@ -25,6 +30,7 @@
     background: linear-gradient(180deg, rgba(5, 7, 60, 0) 0%, #05073c 100%);
     p {
       margin: 0;
+      color: $orange;
     }
   }
 }
@@ -58,6 +64,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .link {
+      color: $blueColor;
+      text-decoration: none;
+    }
   }
 }
 

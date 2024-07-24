@@ -1,3 +1,4 @@
+@import "../../Variables/Variables.scss";
 .navbar {
   font-family: Inter, sans-serif !important;
   display: flex;
@@ -8,9 +9,10 @@
   color: black;
 
   .navbar__links {
+    font-family: $bodyFont;
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
     width: 60%;
     .gap {
       flex-grow: 1;
@@ -51,6 +53,10 @@
     font-size: 1rem;
 
     &:hover {
+      color: $orange;
+    }
+
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -63,7 +69,7 @@
     &-line {
       width: 25px;
       height: 3px;
-      background-color: #fff;
+      background-color: $blueColor;
       margin: 3px 0;
     }
   }
@@ -82,4 +88,7 @@
     display: flex !important;
     align-items: center;
   }
+}
+.active {
+  color: $orange;
 }

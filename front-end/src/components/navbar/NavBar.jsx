@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./navbar.scss";
 import { MdClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -24,27 +25,27 @@ const Navbar = () => {
       </div>
 
       <div className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
-        <a href="/" className="navbar__link">
+        <NavLink to="/" className="navbar__link">
           Home
-        </a>
-        <a href="/tours" className="navbar__link">
+        </NavLink>
+        <NavLink to="/tours" className="navbar__link">
           Tours
-        </a>
-        <a href="/help" className="navbar__link">
+        </NavLink>
+        <NavLink to="/help" className="navbar__link">
           Help
-        </a>
-        <a href="/contact" className="navbar__link">
+        </NavLink>
+        <NavLink to="/contact" className="navbar__link">
           Contact
-        </a>
+        </NavLink>
         <div className="gap"></div>
         {!currentUser && (
-          <a href="/sign-up" className="navbar__link">
+          <NavLink to="/sign-up" className="navbar__link">
             Sign up
-          </a>
+          </NavLink>
         )}
-        <a href="/profile" className="navbar__link login">
+        <NavLink to="/profile" className="navbar__link login">
           {currentUser ? <RxAvatar /> : "Log in "}
-        </a>
+        </NavLink>
       </div>
       <div className="navbar__hamburger" onClick={toggleMenu}>
         {isOpen ? <MdClose /> : <GiHamburgerMenu />}

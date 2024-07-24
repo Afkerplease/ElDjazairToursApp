@@ -1,13 +1,16 @@
 .choose__section {
   padding-bottom: 2rem;
   margin: 5rem auto;
-  max-width: 1320px;
+  // max-width: 1320px;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .cards__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   align-items: start;
+  flex-wrap: wrap;
 
   .card {
     display: flex;
@@ -22,6 +25,11 @@
     }
     &__text {
       width: 256px;
+    }
+  }
+  @media (max-width: 768px) {
+    .card {
+      align-items: center;
     }
   }
 }
