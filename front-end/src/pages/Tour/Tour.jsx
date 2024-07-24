@@ -65,6 +65,20 @@ const Tour = () => {
       console.log(error);
     }
   };
+  const clickHandlerBook = async () => {
+    const res = await fetch(`/api/v1/booking/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: currentUser._id,
+        tour_id: tourid.id,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
 
   return (
     <div className="tour-page">
@@ -73,7 +87,9 @@ const Tour = () => {
         <h1 className="tour-title"> {tourData.name} </h1>
         <p className="tour-description">{tourData.description}</p>
         <p className="tour-price"> {tourData.price} € </p>
-        <button className="book-button">Book Now</button>
+        <button className="book-button" onClick={clickHandlerBook}>
+          Book Now
+        </button>
       </div>
       <div className="comments-section">
         <h2>Comments</h2>

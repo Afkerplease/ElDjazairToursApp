@@ -17,7 +17,6 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       trim: true,
       default: "pending",
-      required: [true, "A tour must have a description"],
     },
   },
   { timestamps: true }
