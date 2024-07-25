@@ -57,10 +57,8 @@ const Tour = () => {
       });
       const data = res.json();
       if ((data.success = false)) {
-        // dispatch(deleteUserFailure(data));
         return;
       }
-      // dispatch(deleteUserSuccess(data));
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +101,6 @@ const Tour = () => {
           <button onClick={addComments}>Add Comment</button>
         </div>
         <ul className="comments-list">
-          {/* <li className="comment">{comments[0].comment}</li> */}
           {comments.map((comment, index) => (
             <li key={comment._id} className="comment">
               {comment.comment}

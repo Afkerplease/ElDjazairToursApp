@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./tours.scss";
 import { Link } from "react-router-dom";
 
-function Tours() {
+function ToursPage() {
   const [data, setData] = useState([]);
   async function getTours() {
     const res = await fetch("/api/v1/tours");
@@ -40,4 +40,4 @@ function Tours() {
   );
 }
 
-export default Tours;
+export default ToursPage;

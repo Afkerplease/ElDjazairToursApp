@@ -11,6 +11,7 @@ import Tour from "./pages/Tour/Tour";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile/Profile";
 import PrivacyPage from "./pages/PrivacyPage/PrivacyPage";
+import BookingsPage from "./pages/Bookings/BookingsPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/bookings" element={<BookingsPage />} />
         </Route>
       </Route>
     </Routes>

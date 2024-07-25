@@ -34,12 +34,6 @@ exports.addBookingTour = async (req, res, next) => {
 
 exports.deleteBook = async (req, res, next) => {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.bookingId)) {
-      return res.status(200).json({
-        status: "fail",
-        message: "Id is invalid",
-      });
-    }
     const { bookingId } = req.params;
     await Booking.findOneAndDelete({
       _id: bookingId,

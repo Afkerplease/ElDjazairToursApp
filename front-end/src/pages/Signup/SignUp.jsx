@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./signup.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 
@@ -120,4 +120,4 @@ const SignUp = () => {
     </div>
   );
 };
-export default SignUp;
+export default SignUpPage;
