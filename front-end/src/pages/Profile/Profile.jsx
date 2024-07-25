@@ -18,11 +18,11 @@ function Profile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-  console.log(currentUser);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //   dispatch(updateUserStart());
+      dispatch(updateUserStart());
       const res = await fetch(`/api/v1/users/${currentUser._id} `, {
         method: "PATCH",
         headers: {
@@ -33,15 +33,14 @@ function Profile() {
       const data = await res.json();
 
       if (data.success === false) {
-        // dispatch(updateUserFailure(data));
+        dispatch(updateUserFailure(data));
         console.log(data);
         return;
       }
-      console.log(data);
+
       dispatch(updateUserSuccess(data));
     } catch (error) {
       dispatch(updateUserFailure(error));
-      //   console.log(error.message);
     }
   };
 
@@ -70,7 +69,7 @@ function Profile() {
 
   return (
     <div className="profile-form">
-      <h2>Update Profile</h2>
+      <h1>Update Profile</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -101,13 +100,13 @@ function Profile() {
             onChange={handleChange}
             required={true}
           />
-          <button type="submit" className="update-btn">
-            {loading ? "Loading..." : "Update"}
-          </button>
         </div>
         <div className="form-actions">
           <button type="button" className="delete-btn" onClick={handleDelete}>
             Delete
+          </button>
+          <button type="submit" className="update-btn">
+            {loading ? "Loading..." : "Update"}
           </button>
           <button type="button" className="delete-btn" onClick={handleSignOut}>
             Signout
@@ -115,7 +114,6 @@ function Profile() {
         </div>
       </form>
       <p>{error && "Something went wrong!"}</p>
-      <p>{updateUserSuccess && "User is updated successfully!"}</p>
     </div>
   );
 }
