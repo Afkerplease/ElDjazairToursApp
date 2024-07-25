@@ -4,3 +4,6 @@
 body {
   background-color: #fef8f5;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

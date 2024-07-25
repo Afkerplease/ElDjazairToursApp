@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./admin.scss";
 
 const Admin = () => {
+  const [formAddTourOpen, setFormAddTourOpen] = useState(false);
   const handleAddTour = () => {
     console.log("Add Tour");
   };
