@@ -24,7 +24,7 @@ const Admin = () => {
       console.log(error);
     }
   }
-  console.log(tourData);
+  // console.log(tourData);
 
   // !! function to get all users (/api/v1/users)
   async function getUsers() {
@@ -37,15 +37,30 @@ const Admin = () => {
       console.log(error);
     }
   }
-  // console.log(userData);
+  console.log(userData);
   useEffect(() => {
     getTours();
     getUsers();
   }, []);
 
+  // !!tour delete handler
   const deleteHandler = async (id) => {
     try {
       const res = await fetch(`/api/v1/tours/${id}`, {
+        method: "DELETE",
+      });
+      const data = res.json();
+      if ((data.success = false)) {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //!! user delete handler
+  const userDeleteHandler = async (id) => {
+    try {
+      const res = await fetch(`/api/v1/users/${id}`, {
         method: "DELETE",
       });
       const data = res.json();
@@ -141,20 +156,29 @@ const Admin = () => {
             Add User
           </button>
         </div>
-        <div className="mb-2 p-2 flex justify-between items-center border-b">
-          <span>User 1</span>
-          <div>
-            <button
-              onClick={() => openUserModal({ id: 1, username: "User 1" })}
-              className="bg-green-500 text-white py-1 px-3 rounded mr-2"
-            >
-              <FaEdit />
-            </button>
-            <button className="bg-red-500 text-white py-1 px-3 rounded">
-              <FaTrash />
-            </button>
-          </div>
-        </div>
+        {userData.map((user) => {
+          return (
+            <div className="mb-2 p-2 flex justify-between items-center border-b">
+              <span>{user.name} </span>
+              <span>{user.email} </span>
+              <span>{user.role} </span>
+              <div>
+                <button
+                  onClick={() => openUserModal(user)}
+                  className="bg-green-500 text-white py-1 px-3 rounded mr-2"
+                >
+                  <FaEdit />
+                </button>
+                <button
+                  onClick={() => userDeleteHandler(user._id)}
+                  className="bg-red-500 text-white py-1 px-3 rounded"
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
       {isTourModalOpen && (
         <Modal onClose={closeTourModal}>
