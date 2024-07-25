@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile/Profile";
 import PrivacyPage from "./pages/PrivacyPage/PrivacyPage";
 import BookingsPage from "./pages/Bookings/BookingsPage";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/bookings" element={<BookingsPage />} />
         </Route>
+        <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
   );

@@ -1,0 +1,46 @@
+.admin-page {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .block {
+    flex: 1 1 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .tour,
+    .user {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      span {
+        flex: 1;
+      }
+
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .tours-block {
+    background-color: #f9f9f9;
+  }
+
+  .users-block {
+    background-color: #f0f0f0;
+  }
+
+  @media (max-width: 768px) {
+    .block {
+      flex: 1 1 100%;
+    }
+  }
+}
