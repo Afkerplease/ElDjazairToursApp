@@ -1,57 +1,171 @@
-import React, { useState } from "react";
-import "./admin.scss";
+import React, { useState, useEffect } from "react";
+import Modal from "./Modal";
+import TourForm from "./TourForm.jsx";
+import UserForm from "./UserForm.jsx";
+import { FaTrash } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 
 const Admin = () => {
-  const [formAddTourOpen, setFormAddTourOpen] = useState(false);
-  const handleAddTour = () => {
-    console.log("Add Tour");
+  const [tourData, setTourData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [isTourModalOpen, setTourModalOpen] = useState(false);
+  const [isUserModalOpen, setUserModalOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  // !! function to get all tours
+  async function getTours() {
+    try {
+      const res = await fetch("/api/v1/tours");
+      const data = await res.json();
+
+      setTourData(data.data.tours);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  console.log(tourData);
+
+  // !! function to get all users (/api/v1/users)
+  async function getUsers() {
+    try {
+      const res = await fetch("/api/v1/users");
+      const data = await res.json();
+
+      setUserData(data.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  // console.log(userData);
+  useEffect(() => {
+    getTours();
+    getUsers();
+  }, []);
+
+  const deleteHandler = async (id) => {
+    try {
+      const res = await fetch(`/api/v1/tours/${id}`, {
+        method: "DELETE",
+      });
+      const data = res.json();
+      if ((data.success = false)) {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const openTourModal = (tour) => {
+    setSelectedTour(tour);
+    setTourModalOpen(true);
   };
 
-  const handleEditTour = (tourId) => {
-    console.log("Edit Tour", tourId);
+  const closeTourModal = () => {
+    setTourModalOpen(false);
+    setSelectedTour(null);
   };
 
-  const handleRemoveTour = (tourId) => {
-    console.log("Remove Tour", tourId);
+  const openUserModal = (user = null) => {
+    setSelectedUser(user);
+    setUserModalOpen(true);
   };
 
-  const handleEditUser = (userId) => {
-    console.log("Edit User", userId);
-  };
-
-  const handleRemoveUser = (userId) => {
-    console.log("Remove User", userId);
+  const closeUserModal = () => {
+    setUserModalOpen(false);
+    setSelectedUser(null);
   };
 
   return (
-    <div className="admin-page">
-      <div className="block tours-block">
-        <h2>Tours</h2>
-        <button onClick={handleAddTour}>Add Tour</button>
-        <div className="tour">
-          <span>Tour 1</span>
-          <button onClick={() => handleEditTour(1)}>Edit</button>
-          <button onClick={() => handleRemoveTour(1)}>Remove</button>
+    <div className="flex flex-wrap gap-4 p-4">
+      <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
+        <div className=" flex  justify-between items-center ">
+          <h2 className="text-2xl mb-4   font-bold font-['Montserrat'] ">
+            Tours
+          </h2>
+          <button
+            onClick={() => openTourModal()}
+            className="bg-blue-500 text-white border-none py-2 px-3 rounded mb-4"
+          >
+            Add Tour
+          </button>
         </div>
-        <div className="tour">
-          <span>Tour 2</span>
-          <button onClick={() => handleEditTour(2)}>Edit</button>
-          <button onClick={() => handleRemoveTour(2)}>Remove</button>
-        </div>
+        {tourData.map((tour) => {
+          return (
+            <div
+              key={tour._id}
+              className="mb-2 p-2 flex justify-between items-center border-b"
+            >
+              <img className="  object-cover  w-20" src={tour.images} alt="" />
+              <span> {tour.name} </span>
+              <span> {tour.destination} </span>
+              <span> {tour.price} € </span>
+              <span> {tour.maxGroupSize} </span>
+              <div>
+                <button
+                  onClick={() => openTourModal(tour)}
+                  className="bg-green-500 text-white py-1 px-3 rounded mr-2"
+                >
+                  <FaEdit />
+                </button>
+                <button
+                  onClick={() => deleteHandler(tour._id)}
+                  className="bg-red-500 text-white py-1 px-3 rounded"
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className="block users-block">
-        <h2>Users</h2>
-        <div className="user">
+      {/* !! User div start  */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      {/* *************************************************** */}
+      <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
+        <div className=" flex justify-between items-center">
+          <h2 className="text-2xl mb-4   font-bold font-['Montserrat']">
+            Users
+          </h2>
+          <button
+            onClick={() => openUserModal()}
+            className="bg-blue-500 text-white py-2 px-3 rounded mb-4"
+          >
+            Add User
+          </button>
+        </div>
+        <div className="mb-2 p-2 flex justify-between items-center border-b">
           <span>User 1</span>
-          <button onClick={() => handleEditUser(1)}>Edit</button>
-          <button onClick={() => handleRemoveUser(1)}>Remove</button>
-        </div>
-        <div className="user">
-          <span>User 2</span>
-          <button onClick={() => handleEditUser(2)}>Edit</button>
-          <button onClick={() => handleRemoveUser(2)}>Remove</button>
+          <div>
+            <button
+              onClick={() => openUserModal({ id: 1, username: "User 1" })}
+              className="bg-green-500 text-white py-1 px-3 rounded mr-2"
+            >
+              <FaEdit />
+            </button>
+            <button className="bg-red-500 text-white py-1 px-3 rounded">
+              <FaTrash />
+            </button>
+          </div>
         </div>
       </div>
+      {isTourModalOpen && (
+        <Modal onClose={closeTourModal}>
+          <TourForm tour={selectedTour} onClose={closeTourModal} />
+        </Modal>
+      )}
+      {isUserModalOpen && (
+        <Modal onClose={closeUserModal}>
+          <UserForm user={selectedUser} onClose={closeUserModal} />
+        </Modal>
+      )}
     </div>
   );
 };

@@ -1,9 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   box-sizing: border-box;
 }
 body {
   background-color: #fef8f5;
+  overflow-x: hidden;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
