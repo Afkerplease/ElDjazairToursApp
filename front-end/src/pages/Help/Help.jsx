@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import "./help.scss";
 const faqs = [
   {
-    question: "How do I reset my password?",
-    answer:
-      'To reset your password, go to the login page and click on "Forgot password". Follow the instructions to reset your password.',
+    question: "why i can't book a tour ? ",
+    answer: "To book a tour , you need to be connected with an account",
   },
   {
-    question: "Where can I find my order history?",
-    answer:
-      'You can find your order history in your account dashboard under "Order History".',
+    question: "Where can I find my tour bookings ?",
+    answer: 'You can find your tours booking  in your Profile  "my bookings".',
   },
   {
     question: "How do I contact customer support?",
@@ -17,9 +15,8 @@ const faqs = [
       'You can contact customer support through the "Contact Us" page or by emailing ElDjazairTours.com',
   },
   {
-    question: "What is your return policy?",
-    answer:
-      'Our return policy allows you to return items within 30 days of purchase. Please visit our "Return Policy" page for more details.',
+    question: "What is your privacy policy?",
+    answer: 'you can find our privacy policy in the footer "Our Privacy policy',
   },
 ];
 

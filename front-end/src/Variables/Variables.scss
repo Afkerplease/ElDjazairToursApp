@@ -23,3 +23,36 @@ $list1: $gradientColor1 27%, $gradientColor2 87%;
 @mixin gradient($direction, $list1) {
   background: linear-gradient($direction, $list1);
 }
+
+@mixin buttonStyle {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background-color: $orange;
+  color: $blueColor;
+  font-size: 1rem;
+  font-family: $titleFont;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #c24008;
+    color: white;
+  }
+}
+
+@mixin h1Style {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: $blueColor;
+  font-weight: 700;
+  font-family: $titleFont;
+}
+
+@mixin labelStyle {
+  margin-bottom: 0.5rem;
+  color: $blueColor;
+  font-family: $titleFont;
+  font-weight: 500;
+}

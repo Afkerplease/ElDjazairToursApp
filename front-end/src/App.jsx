@@ -10,6 +10,7 @@ import SignUp from "./pages/Signup/SignUp";
 import Tour from "./pages/Tour/Tour";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile/Profile";
+import PrivacyPage from "./pages/PrivacyPage/PrivacyPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/tours/tour/:id" element={<Tour />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
