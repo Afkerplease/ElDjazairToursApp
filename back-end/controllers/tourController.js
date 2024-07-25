@@ -16,7 +16,7 @@ exports.getAllTours = async (req, res) => {
     });
   }
 };
-exports.createTour = async (req, res) => {
+exports.createTour = async (req, res, next) => {
   try {
     const newTour = await Tour.create(req.body);
     res.status(201).json({
@@ -26,10 +26,7 @@ exports.createTour = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      message: error,
-    });
+    next(error);
   }
 };
 
@@ -50,7 +47,7 @@ exports.getTour = async (req, res) => {
     });
   }
 };
-exports.updateTour = async (req, res) => {
+exports.updateTour = async (req, res, next) => {
   try {
     const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -62,10 +59,7 @@ exports.updateTour = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
+    next(error);
   }
 };
 exports.deleteTour = async (req, res) => {

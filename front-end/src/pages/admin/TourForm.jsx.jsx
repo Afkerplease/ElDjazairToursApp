@@ -13,29 +13,32 @@ const TourForm = ({ tour, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitted tour:", {
-      id: tour?.id,
+      id: tour?._id,
       name,
-      images,
+      // images,
       description,
       price,
       destination,
       maxGroupSize,
     });
     try {
-      const res = await fetch(`/api/v1/tours/${tour._id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          images,
-          description,
-          price,
-          destination,
-          maxGroupSize,
-        }),
-      });
+      const res = await fetch(
+        tour ? `/api/v1/tours/${tour._id}` : "/api/v1/tours",
+        {
+          method: tour ? "PATCH" : "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            images,
+            description,
+            price,
+            destination,
+            maxGroupSize,
+          }),
+        }
+      );
       const data = res.json();
       if ((data.success = false)) {
         return;
@@ -56,7 +59,6 @@ const TourForm = ({ tour, onClose }) => {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
           className="border p-2 rounded"
         />
       </label>
@@ -66,7 +68,6 @@ const TourForm = ({ tour, onClose }) => {
           type="text"
           value={images}
           onChange={(e) => setImage(e.target.value)}
-          required
           className="border p-2 rounded"
         />
       </label>
@@ -75,7 +76,6 @@ const TourForm = ({ tour, onClose }) => {
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
           className="border p-2 rounded"
         ></textarea>
       </label>
@@ -85,7 +85,6 @@ const TourForm = ({ tour, onClose }) => {
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          required
           className="border p-2 rounded"
         />
       </label>
@@ -95,7 +94,6 @@ const TourForm = ({ tour, onClose }) => {
           type="text"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
-          required
           className="border p-2 rounded"
         />
       </label>
@@ -105,7 +103,6 @@ const TourForm = ({ tour, onClose }) => {
           type="number"
           value={maxGroupSize}
           onChange={(e) => setMaxGroupSize(e.target.value)}
-          required
           className="border p-2 rounded"
         />
       </label>
