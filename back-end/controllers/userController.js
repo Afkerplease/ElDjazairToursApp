@@ -34,12 +34,13 @@ exports.getUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   try {
     const user = await User.findById(req.params.id);
     if (user) {
       user.name = name || user.name;
       user.email = email || user.email;
+      user.role = role || user.role;
       user.password = bcryptjs.hashSync(password, 10) || user.password;
 
       const updatedUser = await user.save();

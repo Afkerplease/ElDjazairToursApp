@@ -5,7 +5,7 @@ const UserForm = ({ user, onClose }) => {
   const [email, setEmail] = useState(user ? user.email : "");
   const [role, setRole] = useState(user ? user.role : "");
   const [password, setPassword] = useState(user ? user.password : "");
-  console.log(user._id);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitted user:", { id: user?.id, name, email, role });

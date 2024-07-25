@@ -158,7 +158,10 @@ const Admin = () => {
         </div>
         {userData.map((user) => {
           return (
-            <div className="mb-2 p-2 flex justify-between items-center border-b">
+            <div
+              key={user._id}
+              className="mb-2 p-2 flex justify-between items-center border-b"
+            >
               <span>{user.name} </span>
               <span>{user.email} </span>
               <span>{user.role} </span>
