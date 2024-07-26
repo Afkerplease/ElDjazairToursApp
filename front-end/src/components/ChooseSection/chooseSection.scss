@@ -1,7 +1,8 @@
+@import "../../Variables/Variables.scss";
 .choose__section {
   padding-bottom: 2rem;
   margin: 5rem auto;
-  // max-width: 1320px;
+  max-width: 1320px;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -17,6 +18,15 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    margin-top: 2rem;
+    h3 {
+      font-family: $titleFont;
+      font-size: 1.1rem;
+      color: $blueColor;
+    }
+    p {
+      font-family: $bodyFont;
+    }
 
     &__image {
       width: 60px;

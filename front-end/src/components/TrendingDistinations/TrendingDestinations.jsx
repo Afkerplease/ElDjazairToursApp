@@ -15,30 +15,30 @@ function TrendingDestinations() {
         <div className="section__grid">
           {/* grid item */}
           <div className="grid__item">
-            <img className="grid__image" src={image1} alt="" />
+            <img className="grid__image" src={image4} alt="" />
             <div className="grid__title">
-              <h4>title</h4>
+              <h4>Bali</h4>
+            </div>
+          </div>
+          {/* grid item */}
+          <div className="grid__item">
+            <img src={image1} alt="" />
+            <div className="grid__title">
+              <h4>Roma</h4>
             </div>
           </div>
           {/* grid item */}
           <div className="grid__item">
             <img src={image2} alt="" />
             <div className="grid__title">
-              <h4>title</h4>
+              <h4>Phuket</h4>
             </div>
           </div>
           {/* grid item */}
           <div className="grid__item">
             <img src={image3} alt="" />
             <div className="grid__title">
-              <h4>title</h4>
-            </div>
-          </div>
-          {/* grid item */}
-          <div className="grid__item">
-            <img src={image4} alt="" />
-            <div className="grid__title">
-              <h4>title</h4>
+              <h4>Paris</h4>
             </div>
           </div>
         </div>
