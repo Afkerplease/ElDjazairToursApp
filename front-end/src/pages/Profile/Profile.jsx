@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./profile.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   updateUserStart,
   updateUserSuccess,
@@ -10,6 +11,7 @@ import {
   deleteUserStart,
   signOut,
 } from "../../redux/user/userSlice.js";
+
 function Profile() {
   const dispatch = useDispatch();
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -68,53 +70,64 @@ function Profile() {
   };
 
   return (
-    <div className="profile-form">
-      <h1>Update Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            defaultValue={currentUser.name}
-            type="text"
-            id="name"
-            name="name"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            defaultValue={currentUser.email}
-            id="email"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={handleChange}
-            required={true}
-          />
-        </div>
-        <div className="form-actions">
-          <button type="button" className="delete-btn" onClick={handleDelete}>
-            Delete
-          </button>
-          <button type="submit" className="update-btn">
-            {loading ? "Loading..." : "Update"}
-          </button>
-          <button type="button" className="delete-btn" onClick={handleSignOut}>
-            Signout
-          </button>
-        </div>
-      </form>
-      <p>{error && "Something went wrong!"}</p>
-    </div>
+    <>
+      <Link className="booking__link" to="/profile/bookings">
+        my bookings
+      </Link>
+      <div className="profile-form">
+        {/* <Link>my boookings</Link> */}
+        <h1>Update Profile</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              defaultValue={currentUser.name}
+              type="text"
+              id="name"
+              name="name"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              defaultValue={currentUser.email}
+              id="email"
+              name="email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={handleChange}
+              required={true}
+            />
+          </div>
+          <div className="form-actions">
+            <button type="button" className="delete-btn" onClick={handleDelete}>
+              Delete
+            </button>
+            <button type="submit" className="update-btn">
+              {loading ? "Loading..." : "Update"}
+            </button>
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={handleSignOut}
+            >
+              Signout
+            </button>
+          </div>
+        </form>
+
+        <p>{error && "Something went wrong!"}</p>
+      </div>
+    </>
   );
 }
 

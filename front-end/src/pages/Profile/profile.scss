@@ -71,3 +71,16 @@
     }
   }
 }
+.booking__link {
+  text-decoration: none;
+  text-align: left;
+  display: block;
+  margin: 2rem;
+  font-family: $titleFont;
+  font-weight: 700;
+  font-size: 2rem;
+  color: $blueColor;
+  &:hover {
+    color: $orange;
+  }
+}

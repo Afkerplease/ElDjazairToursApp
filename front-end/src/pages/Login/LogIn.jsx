@@ -34,6 +34,7 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data);
       console.log(data.error);
       if (data.success === false) {
         console.log(data.error);
@@ -41,8 +42,11 @@ const Login = () => {
         return;
       }
       dispatch(signInSuccess(data));
-
-      navigate("/");
+      if (data.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       dispatch(signInFailure(error));
     }
