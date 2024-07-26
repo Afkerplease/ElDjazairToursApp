@@ -5,15 +5,11 @@ const userRouter = require("./routes/UserRoutes");
 const authRouter = require("./routes/authRoute");
 const reviewsRouter = require("./routes/reviewsRoutes");
 const bookingRouter = require("./routes/bookingRoute");
-const path = require("path");
 
 const cors = require("cors");
-const _dirname = path.resolve();
+
 const app = express();
-app.use(express.static(path.join(_dirname, "/front-end/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(_dirname, "front-end", "dist", "index.html"));
-});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
