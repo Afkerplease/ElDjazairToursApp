@@ -1,12 +1,25 @@
+@import "../../Variables/Variables.scss";
 .tour-page {
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: $titleFont;
 
   .tour-details {
     text-align: center;
     margin-bottom: 30px;
+    h1 {
+      @include h1Style;
+    }
+    p {
+      color: $blueColor;
+      font-family: $bodyFont;
+    }
+    .booking__tour--text {
+      margin-top: 2rem;
+      color: red;
+    }
 
     .tour-image {
       width: 100%;
@@ -32,17 +45,8 @@
     }
 
     .book-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
+      @include buttonStyle;
       padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #0056b3;
-      }
     }
   }
 

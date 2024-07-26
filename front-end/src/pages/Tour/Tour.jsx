@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 
 const Tour = () => {
   const [newComment, setNewComment] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
   const [comments, setComments] = useState([]);
   const [tourData, setTourData] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
   console.log(currentUser);
-
+  console.log(comments);
   const tourid = useParams();
 
   // !! function to get the tour data
@@ -84,28 +85,52 @@ const Tour = () => {
         <img src={tourData.images} alt="Tour" className="tour-image" />
         <h1 className="tour-title"> {tourData.name} </h1>
         <p className="tour-description">{tourData.description}</p>
-        <p className="tour-price"> {tourData.price} € </p>
-        <button className="book-button" onClick={clickHandlerBook}>
+        <p className="tour-price"> Price:{tourData.price} € </p>
+        <button
+          style={{ display: `${!currentUser ? "none" : ""}` }}
+          className="book-button"
+          onClick={clickHandlerBook}
+        >
           Book Now
         </button>
+        {!currentUser && (
+          <p className="booking__tour--text">
+            {" "}
+            in order to book a tour ,you have to create an account{" "}
+          </p>
+        )}
       </div>
       <div className="comments-section">
         <h2>Comments</h2>
-        <div className="comment-input">
-          <input
-            type="text"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Add a comment"
-          />
-          <button onClick={addComments}>Add Comment</button>
-        </div>
+        {currentUser && (
+          <div className="comment-input">
+            <input
+              type="text"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Add a comment"
+            />
+            <button onClick={addComments}>Add Comment</button>
+          </div>
+        )}
         <ul className="comments-list">
           {comments.map((comment, index) => (
-            <li key={comment._id} className="comment">
-              {comment.comment}
-              <button onClick={() => deleteComment(comment._id)}>Delete</button>
-            </li>
+            <div className="comment__div">
+              <h4>{comment.user_id.name} </h4>
+              <li key={comment._id} className="comment">
+                {comment.comment}
+                <button
+                  style={{
+                    display: `${
+                      currentUser.name !== comment.user_id.name ? "none" : ""
+                    }`,
+                  }}
+                  onClick={() => deleteComment(comment._id)}
+                >
+                  Delete
+                </button>
+              </li>
+            </div>
           ))}
         </ul>
       </div>
