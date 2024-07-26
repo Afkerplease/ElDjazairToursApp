@@ -4,6 +4,7 @@ import TourForm from "./TourForm.jsx";
 import UserForm from "./UserForm.jsx";
 import { FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import userPic from "../../images/blank-user.gif";
 
 const Admin = () => {
   const [tourData, setTourData] = useState([]);
@@ -56,6 +57,8 @@ const Admin = () => {
     } catch (error) {
       console.log(error);
     }
+    const updatedTours = tourData.filter((tour) => tour._id !== id);
+    setTourData(updatedTours);
   };
   //!! user delete handler
   const userDeleteHandler = async (id) => {
@@ -70,6 +73,8 @@ const Admin = () => {
     } catch (error) {
       console.log(error);
     }
+    const updatedUsers = userData.filter((user) => user._id !== id);
+    setUserData(updatedUsers);
   };
   const openTourModal = (tour) => {
     setSelectedTour(tour);
@@ -93,18 +98,21 @@ const Admin = () => {
 
   return (
     <div className="flex flex-wrap gap-4 p-4">
-      <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
+      <div className="w-full  bg-gray-100 p-4 rounded-lg">
         <div className=" flex  justify-between items-center ">
           <h2 className="text-2xl mb-4   font-bold font-['Montserrat'] ">
             Tours
           </h2>
           <button
             onClick={() => openTourModal()}
-            className="bg-blue-500 text-white border-none py-2 px-3 rounded mb-4"
+            className=" text-white py-2 px-3 rounded mb-4 bg-orange-500 border-none font-bold  cursor-pointer"
           >
             Add Tour
           </button>
         </div>
+        {!tourData.length && (
+          <p className=" text-center  text-2xl">ther is no tours</p>
+        )}
         {tourData.map((tour) => {
           return (
             <div
@@ -112,20 +120,25 @@ const Admin = () => {
               className="mb-2 p-2 flex justify-between items-center border-b"
             >
               <img className="  object-cover  w-20" src={tour.images} alt="" />
-              <span> {tour.name} </span>
-              <span> {tour.destination} </span>
-              <span> {tour.price} € </span>
-              <span> {tour.maxGroupSize} </span>
+
+              <div className=" flex flex-col md:flex-row  justify-around w-full items-center ">
+                <h3>
+                  Name: <span className="  ">{tour.name} </span>
+                </h3>
+                <h3>Destination: {tour.destination} </h3>
+                <h3> Price: {tour.price} € </h3>
+                <h3> GroupSize: {tour.maxGroupSize} </h3>
+              </div>
               <div>
                 <button
                   onClick={() => openTourModal(tour)}
-                  className="bg-green-500 text-white py-1 px-3 rounded mr-2"
+                  className="bg-green-500 text-white py-1 px-3 md:mb-2 cursor-pointer border-none rounded mr-2"
                 >
                   <FaEdit />
                 </button>
                 <button
                   onClick={() => deleteHandler(tour._id)}
-                  className="bg-red-500 text-white py-1 px-3 rounded"
+                  className="bg-red-500 text-white py-1 border-none cursor-pointer px-3 rounded"
                 >
                   <FaTrash />
                 </button>
@@ -144,37 +157,43 @@ const Admin = () => {
       {/* *************************************************** */}
       {/* *************************************************** */}
       {/* *************************************************** */}
-      <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
+      <div className="w-full  bg-gray-100 p-4 rounded-lg">
         <div className=" flex justify-between items-center">
           <h2 className="text-2xl mb-4   font-bold font-['Montserrat']">
             Users
           </h2>
           <button
             onClick={() => openUserModal()}
-            className="bg-blue-500 text-white py-2 px-3 rounded mb-4"
+            className="bg-orange-500 border-none font-bold  cursor-pointer text-white py-2 px-3 rounded mb-4"
           >
             Add User
           </button>
         </div>
+        {!userData.length && (
+          <p className=" text-center  text-2xl">ther is no Users</p>
+        )}
         {userData.map((user) => {
           return (
             <div
               key={user._id}
               className="mb-2 p-2 flex justify-between items-center border-b"
             >
-              <span>{user.name} </span>
-              <span>{user.email} </span>
-              <span>{user.role} </span>
+              <img className="  object-cover  w-20" src={userPic} alt="" />
+              <div className="flex flex-col md:flex-row  justify-around w-full items-center">
+                <span>UserName:{user.name} </span>
+                <span>Email:{user.email} </span>
+                <span>Role:{user.role} </span>
+              </div>
               <div>
                 <button
                   onClick={() => openUserModal(user)}
-                  className="bg-green-500 text-white py-1 px-3 rounded mr-2"
+                  className="bg-green-500 cursor-pointer text-white py-1 px-3 md:mb-2 border-none rounded mr-2"
                 >
                   <FaEdit />
                 </button>
                 <button
                   onClick={() => userDeleteHandler(user._id)}
-                  className="bg-red-500 text-white py-1 px-3 rounded"
+                  className="bg-red-500 cursor-pointer text-white border-none py-1 px-3 rounded"
                 >
                   <FaTrash />
                 </button>
