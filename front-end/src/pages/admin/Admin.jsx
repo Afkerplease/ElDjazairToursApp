@@ -5,14 +5,19 @@ import UserForm from "./UserForm.jsx";
 import { FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import userPic from "../../images/blank-user.gif";
+import { useSelector } from "react-redux";
 
 const Admin = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const [tourData, setTourData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [isTourModalOpen, setTourModalOpen] = useState(false);
   const [isUserModalOpen, setUserModalOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
+  if (currentUser?.role !== "admin") {
+    return <p> Error 404</p>;
+  }
 
   // !! function to get all tours
   async function getTours() {
@@ -122,12 +127,12 @@ const Admin = () => {
               <img className="  object-cover  w-20" src={tour.images} alt="" />
 
               <div className=" flex flex-col md:flex-row  justify-around w-full items-center ">
-                <h3>
+                <span>
                   Name: <span className="  ">{tour.name} </span>
-                </h3>
-                <h3>Destination: {tour.destination} </h3>
-                <h3> Price: {tour.price} € </h3>
-                <h3> GroupSize: {tour.maxGroupSize} </h3>
+                </span>
+                <span>Destination: {tour.destination} </span>
+                <span> Price: {tour.price} € </span>
+                <span> GroupSize: {tour.maxGroupSize} </span>
               </div>
               <div>
                 <button

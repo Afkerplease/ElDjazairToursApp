@@ -117,6 +117,9 @@ const SignUpPage = () => {
         </div> */}
         <button type="submit">Sign Up</button>
       </form>
+      <p>
+        already have an account? LogIn <Link to={"/log-in"}>here</Link>{" "}
+      </p>
     </div>
   );
 };
