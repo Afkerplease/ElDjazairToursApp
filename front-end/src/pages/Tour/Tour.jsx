@@ -8,6 +8,7 @@ const Tour = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [comments, setComments] = useState([]);
   const [tourData, setTourData] = useState([]);
+  const [rating, setRating] = useState(1);
   const { currentUser } = useSelector((state) => state.user);
   console.log(currentUser);
   console.log(comments);
@@ -38,7 +39,7 @@ const Tour = () => {
       body: JSON.stringify({
         tour_id: tourid.id,
         user_id: currentUser._id,
-        rating: 4,
+        rating: rating,
         comment: newComment,
       }),
     });
@@ -105,6 +106,15 @@ const Tour = () => {
         {currentUser && (
           <div className="comment-input">
             <input
+              className="rating-input"
+              min={1}
+              max={5}
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              type="number"
+              placeholder=" give a rating from 1 to 5"
+            />
+            <input
               type="text"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
@@ -115,8 +125,11 @@ const Tour = () => {
         )}
         <ul className="comments-list">
           {comments.map((comment, index) => (
-            <div className="comment__div">
-              <h4>{comment.user_id.name} </h4>
+            <div key={comment._id} className="comment__div">
+              <h4>
+                {comment.user_id.name}{" "}
+                <span>gave a rating of {comment.rating}/5</span>{" "}
+              </h4>
               <li key={comment._id} className="comment">
                 {comment.comment}
                 <button

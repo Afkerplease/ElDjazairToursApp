@@ -62,9 +62,13 @@
     .comment-input {
       display: flex;
       margin-bottom: 20px;
+      .rating-input {
+        width: 20%;
+        flex: 1;
+      }
 
       input {
-        flex: 1;
+        flex: 9;
         padding: 10px;
         font-size: 1rem;
         border: 1px solid #ccc;
@@ -90,6 +94,11 @@
     .comments-list {
       list-style: none;
       padding: 0;
+      span {
+        font-size: 0.7rem;
+        color: $orange;
+        margin-left: 1rem;
+      }
 
       .comment {
         display: flex;
