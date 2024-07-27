@@ -1,7 +1,10 @@
 const Tour = require("../models/tourModel");
 exports.getAllTours = async (req, res) => {
+  const searchedTour = req.query.searchedTour || "";
   try {
-    const tours = await Tour.find();
+    const tours = await Tour.find({
+      name: { $regex: searchedTour, $options: "i" },
+    });
     res.status(200).json({
       status: "success",
       results: tours.length,
