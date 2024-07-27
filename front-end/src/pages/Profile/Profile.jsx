@@ -68,12 +68,11 @@ function Profile() {
       console.log(error);
     }
   };
-
   return (
     <>
-      <Link className="booking__link" to="/profile/bookings">
+      {/* <Link className="booking__link" to="/profile/bookings">
         my bookings
-      </Link>
+      </Link> */}
       <div className="profile-form">
         {/* <Link>my boookings</Link> */}
         <h1>Update Profile</h1>

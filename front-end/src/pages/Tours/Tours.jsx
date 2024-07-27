@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./tours.scss";
 import { Link } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
 
 function ToursPage() {
   const [data, setData] = useState([]);
@@ -39,7 +40,9 @@ function ToursPage() {
           placeholder=" search by  tour name"
           onChange={(e) => setSearchedTour(e.target.value)}
         />
-        <button>Search</button>
+        <button>
+          <CiSearch />
+        </button>
       </form>
       <div className="tours">
         {data.map((tour) => {

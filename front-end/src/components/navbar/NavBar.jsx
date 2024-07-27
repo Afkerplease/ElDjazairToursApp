@@ -5,15 +5,30 @@ import { MdClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../../images/logo3.png";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RxAvatar } from "react-icons/rx";
+import { signOut } from "../../redux/user/userSlice.js";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+  const [isDropOpen, setIsDropOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropOpen(!isDropOpen);
+  };
+  const handleSignOut = async () => {
+    try {
+      await fetch("api/v1/auth/logout");
+      dispatch(signOut());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -43,12 +58,42 @@ const Navbar = () => {
             Sign up
           </NavLink>
         )}
-        <NavLink to="/profile" className="navbar__link login">
-          {currentUser ? <RxAvatar /> : "Log in "}
-        </NavLink>
+
+        {!currentUser ? (
+          <NavLink to={"log-in"} className="navbar__link login">
+            Log in
+          </NavLink>
+        ) : (
+          <div className="dropdown">
+            <NavLink to={"/profile"}>
+              <RxAvatar
+                className="avatar__link"
+                onMouseEnter={toggleDropdown}
+                fontSize={"1.4rem"}
+              />
+            </NavLink>
+            {isDropOpen && (
+              <div className="dropdown-menu">
+                <a href="/profile" className="dropdown-item">
+                  Profile
+                </a>
+                <a href="/bookings" className="dropdown-item">
+                  Bookings
+                </a>
+                <button
+                  type="button"
+                  className="delete-btn dropdown-item"
+                  onClick={handleSignOut}
+                >
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div className="navbar__hamburger" onClick={toggleMenu}>
-        {isOpen ? <MdClose /> : <GiHamburgerMenu />}
+        {isOpen ? <MdClose /> : <GiHamburgerMenu onClick={toggleDropdown} />}
       </div>
     </nav>
   );

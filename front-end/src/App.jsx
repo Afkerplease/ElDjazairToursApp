@@ -28,8 +28,8 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/bookings" element={<BookingsPage />} />
         </Route>
+        <Route path="/bookings" element={<BookingsPage />} />
         <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
