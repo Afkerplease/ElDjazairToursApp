@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Tour.scss";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import StarRate from "../../components/StarRate";
 
 const Tour = () => {
   const [newComment, setNewComment] = useState("");
@@ -13,6 +14,7 @@ const Tour = () => {
   console.log(currentUser);
   console.log(comments);
   const tourid = useParams();
+  console.log(rating);
 
   // !! function to get the tour data
   async function getTourData() {
@@ -106,20 +108,12 @@ const Tour = () => {
         {currentUser && (
           <div className="comment-input">
             <input
-              className="rating-input"
-              min={1}
-              max={5}
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              type="number"
-              placeholder=" give a rating from 1 to 5"
-            />
-            <input
               type="text"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment"
             />
+            <StarRate setRating={setRating} />
             <button onClick={addComments}>Add Comment</button>
           </div>
         )}
@@ -127,8 +121,7 @@ const Tour = () => {
           {comments.map((comment, index) => (
             <div key={comment._id} className="comment__div">
               <h4>
-                {comment.user_id.name}{" "}
-                <span>gave a rating of {comment.rating}/5</span>{" "}
+                {comment.user_id.name} <StarRate rating={comment.rating} />
               </h4>
               <li key={comment._id} className="comment">
                 {comment.comment}
