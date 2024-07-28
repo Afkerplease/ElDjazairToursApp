@@ -13,7 +13,7 @@ function StarRate({ setRating, rating }) {
       start={0}
       stop={5}
       initialRating={ratingValue}
-      fullSymbol={<FaStar color="yellow" />}
+      fullSymbol={<FaStar color="#FFD700" />}
       emptySymbol={<FaStar color="gray" />}
     />
   );

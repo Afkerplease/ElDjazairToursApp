@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-import {
-  signInStart,
-  signInFailure,
-  signInSuccess,
-} from "../../redux/user/userSlice";
+import { signInFailure, signInSuccess } from "../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const { loading, error } = useSelector((state) => state.user);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
@@ -25,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(signInStart());
+      setLoading(true);
       const res = await fetch("/api/v1/auth/signin", {
         method: "POST",
         headers: {
@@ -38,17 +36,19 @@ const Login = () => {
       console.log(data.error);
       if (data.success === false) {
         console.log(data.error);
-        dispatch(signInFailure(data.error));
+
+        setError(data.error);
         return;
       }
       dispatch(signInSuccess(data));
+      setLoading(false);
       if (data.role === "admin") {
         navigate("/admin");
       } else {
         navigate("/");
       }
     } catch (error) {
-      dispatch(signInFailure(error));
+      console.log(error);
     }
   };
 
@@ -76,8 +76,9 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit"> {loading ? "Loading..." : "Login"} </button>
       </form>
+      {error && <p style={{ color: "red" }}> {error} </p>}
       <p>
         you dont have an account? Signup <Link to={"/sign-up"}>here</Link>{" "}
       </p>

@@ -104,6 +104,7 @@ const Tour = () => {
           <div className="comment-input">
             <input
               type="text"
+              required
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment"

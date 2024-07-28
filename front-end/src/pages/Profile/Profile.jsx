@@ -60,14 +60,7 @@ function Profile() {
       dispatch(deleteUserSuccess(data));
     } catch (error) {}
   };
-  const handleSignOut = async () => {
-    try {
-      await fetch("api/v1/auth/logout");
-      dispatch(signOut());
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   return (
     <>
       {/* <Link className="booking__link" to="/profile/bookings">
@@ -113,13 +106,6 @@ function Profile() {
             </button>
             <button type="submit" className="update-btn">
               {loading ? "Loading..." : "Update"}
-            </button>
-            <button
-              type="button"
-              className="delete-btn"
-              onClick={handleSignOut}
-            >
-              Signout
             </button>
           </div>
         </form>
