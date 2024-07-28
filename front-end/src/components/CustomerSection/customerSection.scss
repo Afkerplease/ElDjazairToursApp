@@ -1,3 +1,4 @@
+@import "../../Variables/Variables.scss";
 .reviews-container {
   max-width: 1320px;
   margin: 0 auto;
@@ -6,11 +7,12 @@
   gap: 1.5rem;
   padding: 2rem;
   background-color: #f9f9f9;
+  font-family: $titleFont;
 }
 
 .review {
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid $orange;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -20,7 +22,7 @@
   margin: 0;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
+  color: $blueColor;
 }
 
 .review-rating {
@@ -39,4 +41,5 @@
 .review-comment {
   font-size: 1rem;
   color: #555;
+  font-family: $bodyFont;
 }

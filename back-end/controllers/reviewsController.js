@@ -34,6 +34,7 @@ exports.addReview = async (req, res, next) => {
     await Reviews.create(body);
     return res.status(200).json({
       status: "success",
+      comment: body.comment,
     });
   } catch (error) {
     return next(error);

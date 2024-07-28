@@ -11,10 +11,8 @@ const Tour = () => {
   const [tourData, setTourData] = useState([]);
   const [rating, setRating] = useState(1);
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
-  console.log(comments);
+
   const tourid = useParams();
-  console.log(rating);
 
   // !! function to get the tour data
   async function getTourData() {
@@ -27,7 +25,6 @@ const Tour = () => {
   async function getTourComment() {
     const res = await fetch(`/api/v1/reviews/${tourid.id}`);
     const data = await res.json();
-    console.log(data.data);
 
     setComments(data.data);
   }
@@ -60,12 +57,11 @@ const Tour = () => {
         method: "DELETE",
       });
       const data = res.json();
+      setComments(comments.filter((comment) => comment._id !== id));
       if ((data.success = false)) {
         return;
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const clickHandlerBook = async () => {
     const res = await fetch(`/api/v1/booking/add`, {
@@ -79,7 +75,6 @@ const Tour = () => {
       }),
     });
     const data = await res.json();
-    console.log(data);
   };
 
   return (
