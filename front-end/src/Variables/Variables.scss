@@ -7,10 +7,10 @@ $gradientColor2: #4c43c4;
 $orange: #eb662b;
 $whiteColor: #fff;
 $redColor: rgb(216, 142, 142);
+$list1: $gradientColor1 27%, $gradientColor2 87%;
 // !! FONTS
 $titleFont: "Montserrat", sans-serif;
 $bodyFont: "Poppins", sans-serif;
-$list1: $gradientColor1 27%, $gradientColor2 87%;
 @mixin buttonStyle {
   width: 200px;
   height: 40px;

@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
+  const [error, setError] = useState("");
+  console.log(error);
 
   const [loading, setLoading] = useState(false);
 
@@ -15,24 +17,29 @@ const SignUpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      const res = await fetch("/api/v1/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      setLoading(false);
-      const data = await res.json();
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+    } else {
+      setError("");
+      try {
+        setLoading(true);
+        const res = await fetch("/api/v1/auth/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        setLoading(false);
+        const data = await res.json();
 
-      console.log(data);
-      navigate("/log-in");
-    } catch (error) {
-      console.log(error);
+        console.log(data);
+        navigate("/log-in");
+      } catch (error) {
+        console.log(error);
+      }
+      setFormData({});
     }
-    setFormData({});
   };
 
   return (
@@ -68,6 +75,7 @@ const SignUpPage = () => {
             onChange={handleChange}
             required
           />
+          {error && <p style={{ color: "red" }}> {error} </p>}
         </div>
 
         <button type="submit"> {loading ? "Loading..." : "Sign Up"} </button>

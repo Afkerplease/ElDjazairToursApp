@@ -26,6 +26,7 @@ exports.addBookingTour = async (req, res, next) => {
     await Booking.create(req.body);
     return res.status(200).json({
       status: "success",
+      message: " you booked this tour ",
     });
   } catch (error) {
     return next(error);

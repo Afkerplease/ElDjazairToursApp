@@ -1,8 +1,18 @@
+@import "../../Variables/Variables.scss";
+
 .bookings-page {
   padding: 20px;
   h1 {
+    @include h1Style;
     text-align: center;
     margin-bottom: 20px;
+  }
+  .error__text {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: $titleFont;
+    color: $orange;
   }
   .booking-list {
     list-style: none;

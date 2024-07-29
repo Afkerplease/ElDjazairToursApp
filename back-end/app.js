@@ -20,6 +20,7 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/reviews", reviewsRouter);
 app.use("/api/v1/booking", bookingRouter);
+
 //  error handler when using next()
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

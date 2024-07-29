@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./bookings.scss";
 
 const BookingsPage = () => {
   const [bookingData, setBookingData] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
-  const userId = currentUser._id;
-  //   console.log(userId);
+  const userId = currentUser?._id;
 
   //   !! function to get the user bookings
   async function getUserBookings() {
@@ -39,8 +38,8 @@ const BookingsPage = () => {
   return (
     <div className="bookings-page">
       <h1>Your Bookings</h1>
-      {!bookingData.length ? (
-        <p> you have no bookings</p>
+      {!bookingData?.length ? (
+        <p className=" error__text"> you have no bookings</p>
       ) : (
         <ul className="booking-list">
           {bookingData.map((booking) => (

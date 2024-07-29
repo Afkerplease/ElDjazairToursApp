@@ -6,11 +6,14 @@ import StarRate from "../../components/StarRate";
 
 const Tour = () => {
   const [newComment, setNewComment] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
+
   const [comments, setComments] = useState([]);
   const [tourData, setTourData] = useState([]);
+  const [message, setMessage] = useState("");
+
   const [rating, setRating] = useState(1);
   const { currentUser } = useSelector((state) => state.user);
+  console.log(tourData);
 
   const tourid = useParams();
 
@@ -75,6 +78,7 @@ const Tour = () => {
       }),
     });
     const data = await res.json();
+    setMessage(data.message);
   };
 
   return (
@@ -91,6 +95,7 @@ const Tour = () => {
         >
           Book Now
         </button>
+        {message && <p style={{ color: "green" }}> {message} </p>}
         {!currentUser && (
           <p className="booking__tour--text">
             {" "}
