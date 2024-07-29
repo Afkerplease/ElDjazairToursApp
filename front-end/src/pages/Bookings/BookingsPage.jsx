@@ -35,6 +35,9 @@ const BookingsPage = () => {
     }
     setBookingData(bookingData.filter((booking) => booking._id !== id));
   };
+  if (!currentUser) {
+    return <p className="error--message "> Error 404</p>;
+  }
   return (
     <div className="bookings-page">
       <h1>Your Bookings</h1>

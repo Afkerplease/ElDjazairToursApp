@@ -44,7 +44,10 @@ exports.updateUser = async (req, res) => {
       user.password = bcryptjs.hashSync(password, 10) || user.password;
 
       const updatedUser = await user.save();
-      res.json(updatedUser);
+      res.json({
+        updatedUser,
+        message: "User updated",
+      });
     } else {
       res.status(404).json({ message: "Utilisateur non trouvé" });
     }
@@ -60,9 +63,6 @@ exports.deleteUser = async (req, res) => {
       data: null,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
+    next(error);
   }
 };

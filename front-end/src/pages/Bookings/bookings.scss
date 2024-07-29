@@ -54,3 +54,11 @@
     }
   }
 }
+
+.error--message {
+  // text-center text-2xl  font-bold
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: $blueColor;
+}

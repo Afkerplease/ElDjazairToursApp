@@ -15,9 +15,6 @@ const Admin = () => {
   const [isUserModalOpen, setUserModalOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
-  if (currentUser?.role !== "admin") {
-    return <p> Error 404</p>;
-  }
 
   // !! function to get all tours
   async function getTours() {
@@ -100,6 +97,9 @@ const Admin = () => {
     setUserModalOpen(false);
     setSelectedUser(null);
   };
+  if (currentUser?.role !== "admin") {
+    return <p className=" text-center text-2xl  font-bold  "> Error 404</p>;
+  }
 
   return (
     <div className="flex flex-wrap gap-4 p-4">

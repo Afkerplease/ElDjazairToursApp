@@ -3,10 +3,7 @@ import "./profile.scss";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  updateUserStart,
   updateUserSuccess,
-  updateUserFailure,
-  deleteUserFailure,
   deleteUserSuccess,
   deleteUserStart,
 } from "../../redux/user/userSlice.js";
@@ -17,6 +14,8 @@ function Profile() {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  console.log(message);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -24,26 +23,32 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      const res = await fetch(`/api/v1/users/${currentUser._id} `, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+    } else {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/v1/users/${currentUser._id} `, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        setLoading(false);
+        setMessage(data.message);
 
-      if (data.success === false) {
-        setError(data);
-        console.log(data);
-        return;
+        if (data.success === false) {
+          setError(data);
+          console.log(data);
+          return;
+        }
+
+        dispatch(updateUserSuccess(data));
+      } catch (error) {
+        setError(error);
       }
-
-      dispatch(updateUserSuccess(data));
-    } catch (error) {
-      setError(error);
     }
   };
 
@@ -59,7 +64,9 @@ function Profile() {
         return;
       }
       dispatch(deleteUserSuccess(data));
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -96,6 +103,7 @@ function Profile() {
               onChange={handleChange}
               required={true}
             />
+            {message && <p style={{ color: "green" }}> {message} </p>}
           </div>
           <div className="form-actions">
             <button type="button" className="delete-btn" onClick={handleDelete}>
@@ -107,7 +115,7 @@ function Profile() {
           </div>
         </form>
 
-        <p>{error && "Something went wrong!"}</p>
+        <p>{error && error}</p>
       </div>
     </>
   );
