@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./profile.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
 import {
   updateUserStart,
   updateUserSuccess,
@@ -9,13 +9,14 @@ import {
   deleteUserFailure,
   deleteUserSuccess,
   deleteUserStart,
-  signOut,
 } from "../../redux/user/userSlice.js";
 
 function Profile() {
   const dispatch = useDispatch();
-  const { currentUser, loading, error } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -24,7 +25,7 @@ function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(updateUserStart());
+      setLoading(true);
       const res = await fetch(`/api/v1/users/${currentUser._id} `, {
         method: "PATCH",
         headers: {
@@ -35,14 +36,14 @@ function Profile() {
       const data = await res.json();
 
       if (data.success === false) {
-        dispatch(updateUserFailure(data));
+        setError(data);
         console.log(data);
         return;
       }
 
       dispatch(updateUserSuccess(data));
     } catch (error) {
-      dispatch(updateUserFailure(error));
+      setError(error);
     }
   };
 
@@ -54,7 +55,7 @@ function Profile() {
       });
       const data = res.json();
       if ((data.success = false)) {
-        dispatch(deleteUserFailure(data));
+        setError(error);
         return;
       }
       dispatch(deleteUserSuccess(data));
@@ -63,11 +64,7 @@ function Profile() {
 
   return (
     <>
-      {/* <Link className="booking__link" to="/profile/bookings">
-        my bookings
-      </Link> */}
       <div className="profile-form">
-        {/* <Link>my boookings</Link> */}
         <h1>Update Profile</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

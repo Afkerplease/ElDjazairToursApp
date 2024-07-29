@@ -36,12 +36,12 @@ const Login = () => {
       console.log(data.error);
       if (data.success === false) {
         console.log(data.error);
+        setLoading(false);
 
         setError(data.error);
         return;
       }
       dispatch(signInSuccess(data));
-      setLoading(false);
       if (data.role === "admin") {
         navigate("/admin");
       } else {

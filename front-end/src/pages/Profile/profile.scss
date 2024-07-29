@@ -5,8 +5,9 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
+  margin-top: 4rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 
   h1 {
     @include h1Style;
@@ -43,11 +44,17 @@
     .update-btn {
       background-color: #4caf50;
       color: white;
+      &:hover {
+        background-color: #2d7230;
+      }
     }
 
     .delete-btn {
       background-color: #f44336;
       color: white;
+      &:hover {
+        background-color: #ab281f;
+      }
     }
   }
 }
@@ -67,7 +74,7 @@
     }
 
     .delete-btn {
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
   }
 }

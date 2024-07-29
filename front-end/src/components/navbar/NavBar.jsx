@@ -82,7 +82,7 @@ const Navbar = () => {
                 </a>
                 <button
                   type="button"
-                  className="delete-btn dropdown-item"
+                  className="log__out dropdown-item"
                   onClick={handleSignOut}
                 >
                   Log out

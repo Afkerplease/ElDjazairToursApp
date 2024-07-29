@@ -6,40 +6,8 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 
-  const preferencesOptions = [
-    "Travel",
-    "Technology",
-    "Food",
-    "Fitness",
-    "Music",
-  ];
+  const [loading, setLoading] = useState(false);
 
-  // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  //   const { name, value, type, checked } = e.target;
-  //   if (type === "checkbox") {
-  //     setFormData((prevData) => {
-  //       if (checked) {
-  //         return {
-  //           ...prevData,
-  //           preferences: [...prevData.preferences, value],
-  //         };
-  //       } else {
-  //         return {
-  //           ...prevData,
-  //           preferences: prevData.preferences.filter(
-  //             (preference) => preference !== value
-  //           ),
-  //         };
-  //       }
-  //     });
-  //   } else {
-  //     setFormData({
-  //       ...formData,
-  //       [name]: value,
-  //     });
-  //   }
-  // };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -48,6 +16,7 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const res = await fetch("/api/v1/auth/signup", {
         method: "POST",
         headers: {
@@ -55,7 +24,9 @@ const SignUpPage = () => {
         },
         body: JSON.stringify(formData),
       });
+      setLoading(false);
       const data = await res.json();
+
       console.log(data);
       navigate("/log-in");
     } catch (error) {
@@ -98,24 +69,8 @@ const SignUpPage = () => {
             required
           />
         </div>
-        {/* <div className="form-group">
-          <label>Preferences</label>
-          <div className="preferences-options">
-            {preferencesOptions.map((option) => (
-              <label key={option}>
-                <input
-                  type="checkbox"
-                  name="preferences"
-                  value={option}
-                  checked={formData.preferences.includes(option)}
-                  onChange={handleChange}
-                />
-                {option}
-              </label>
-            ))}
-          </div>
-        </div> */}
-        <button type="submit">Sign Up</button>
+
+        <button type="submit"> {loading ? "Loading..." : "Sign Up"} </button>
       </form>
       <p>
         already have an account? LogIn <Link to={"/log-in"}>here</Link>{" "}
